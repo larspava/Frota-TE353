@@ -24,6 +24,23 @@ public class Frota implements Iterable<Veiculo> {
 	
 	// outros métodos, getters, setter etc
 
+	public ArrayList<Veiculo> getFrota() {
+		return frota;
+	}
+
+	public void setFrota(ArrayList<Veiculo> frota) {
+		this.frota = frota;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Frota:\n");
+		for (Veiculo veiculo : frota) {
+			sb.append(veiculo.toString()).append("\n");
+		}
+		return sb.toString();
+	}
 }
 
 

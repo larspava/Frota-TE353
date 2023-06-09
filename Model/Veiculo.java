@@ -75,6 +75,11 @@ public abstract class Veiculo {
 		this.modelo = modelo;
 	}
 
+	@Override
+	public String toString() {
+		return modelo + " " + marca + " de placa " + placa + " - " + estado;
+	}
+
 	// precisa desenvolver os métodos
 	
 	// emprestar, lê os dados de um Transporte (condutor, kmInicial)

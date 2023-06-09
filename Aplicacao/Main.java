@@ -74,16 +74,29 @@ public class Main {
 				}
 				case 4: {
 					break;
-				}
-				case 5: {
-					break;
 				}*/
+				case 5: {
+					System.out.println(frota.toString());
+					break;
+				}
 			}
 		} while (opcao != 0);
 			teclado.close();
 		}
+		// menu do sistema deve conter:
+		// X - alguma função extra opcional (eventual bônus)
+		// para tal criar métodos static aqui na main que dialogam
+		// com os métodos de Frota, Veiculo etc.
+		
+		// as classes precisam usar comentários em Javadoc
+		// e então gerar o javadoc e mostrar no video
+		// ver explicações em: https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html
+		// e exemplo feito na classe Veiculo
+		
+		// o sistema deve armazenar a frota (persistir os dados em disco)
+		// usando serialização de objetos (tema a ser visto)
 
-	public void createVehicle(){
+	public static void createVehicle(){
 		String placa, marca, modelo, tipo;
 		System.out.print("Digite a PLACA do novo veículo: ");
 		placa = teclado.nextLine();
@@ -116,27 +129,37 @@ public class Main {
 					novoCarro = new Carro(placa, marca, modelo);
 				}
 			}
+			System.out.println("Carro criado!");
 			frota.adicionar(novoCarro);
 		} else if (tipo.equalsIgnoreCase("MOTO")) {
-
+			Moto novaMoto;
+			int cilindradas = 0;
+			String temBagageiro;
+			System.out.print("Digite o número de cilindradas da nova moto: ");
+			cilindradas = teclado.nextInt();
+			teclado.nextLine();
+			System.out.print("Informe se a moto possui bagageiro (digite sim ou não): ");
+			temBagageiro = teclado.nextLine();
+			if(temBagageiro.equalsIgnoreCase("SIM")){
+				novaMoto = new Moto(placa, marca, modelo, cilindradas, true);
+			} else {
+				novaMoto = new Moto(placa, marca, modelo, cilindradas, false);
+			}
+			System.out.println("Moto criada!");
+			frota.adicionar(novaMoto);
 		} else if (tipo.equalsIgnoreCase("CAMINHÃO") || tipo.equalsIgnoreCase("CAMINHAO")){
-
+			Caminhao novoCaminhao;
+			int capacidade = 0;
+			System.out.print("Digite a capacidade do novo caminhão: ");
+			capacidade = teclado.nextInt();
+			teclado.nextLine();
+			novoCaminhao = new Caminhao(placa, marca, modelo, capacidade);
+			System.out.println("Caminhão criado!");
+			frota.adicionar(novoCaminhao);
 		} else {
 			System.out.println("Tipo de veículo invalido!");
 		}
-
 	}
-		// menu do sistema deve conter:
-		// X - alguma função extra opcional (eventual bônus)
-		// para tal criar métodos static aqui na main que dialogam
-		// com os métodos de Frota, Veiculo etc.
-		
-		// as classes precisam usar comentários em Javadoc
-		// e então gerar o javadoc e mostrar no video
-		// ver explicações em: https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html
-		// e exemplo feito na classe Veiculo
-		
-		// o sistema deve armazenar a frota (persistir os dados em disco)
-		// usando serialização de objetos (tema a ser visto)
 }
+
 
