@@ -80,10 +80,24 @@ public class Main {
 				}/*
 				case 3: {
 					break;
-				}
-				case 4: {
-					break;
 				}*/
+				case 4: {
+					Integer num_veiculo, estado;
+					System.out.println(frota.toString());
+					System.out.print("Digite o número do veículo que deseja emprestar: ");
+					num_veiculo = teclado.nextInt();
+					teclado.nextLine();
+
+					System.out.println("Escolha o estado para o véiculo: ");
+					System.out.println("1. Pátio");
+					System.out.println("2. Em operação");
+					System.out.println("3. Oficina");
+					System.out.println("4. Perda total");
+					System.out.print("Escolha um número para o estado do veículo escolhido: ");
+					estado = teclado.nextInt();
+					frota.alterarEstado(num_veiculo, estado);
+					break;
+				}
 				case 5: {
 					System.out.println("Frota: ");
 					System.out.println(frota.toString());
