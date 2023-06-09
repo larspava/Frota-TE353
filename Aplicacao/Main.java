@@ -62,6 +62,8 @@ public class Main {
 			// menu do sistema deve conter:
 			switch(opcao){
 				case 1: {
+					System.out.println("Cadastrando novo veículo ...");
+					createVehicle();
 					break;
 				}/*
 				case 2: {
@@ -80,6 +82,50 @@ public class Main {
 		} while (opcao != 0);
 			teclado.close();
 		}
+
+	public void createVehicle(){
+		String placa, marca, modelo, tipo;
+		System.out.print("Digite a PLACA do novo veículo: ");
+		placa = teclado.nextLine();
+		System.out.print("Digite a MARCA do novo veículo: ");
+		marca = teclado.nextLine();
+		System.out.print("Digite o MODELO do novo veículo: ");
+		modelo = teclado.nextLine();
+		System.out.print("Digite o TIPO do novo veículo (digite \"carro\", \"moto\" ou \"caminhão\"): ");
+		tipo = teclado.nextLine();
+
+		if(tipo.equalsIgnoreCase("CARRO")){
+			Carro novoCarro;
+			int portas = 0;
+			String temLuxo;
+			System.out.print("Digite o número de portas do novo carro: ");
+			portas = teclado.nextInt();
+			teclado.nextLine();
+			System.out.print("Informe se o carro é de luxo (digite sim ou não): ");
+			temLuxo = teclado.nextLine();
+			if(temLuxo.equalsIgnoreCase("SIM")){
+				if(portas > 0 && portas < 5){
+					novoCarro = new Carro(placa, marca, modelo, portas, true);
+				} else {
+					novoCarro = new Carro(placa, marca, modelo, true);
+				}
+			} else {
+				if(portas > 0 && portas < 5){
+					novoCarro = new Carro(placa, marca, modelo, portas);
+				} else {
+					novoCarro = new Carro(placa, marca, modelo);
+				}
+			}
+			frota.adicionar(novoCarro);
+		} else if (tipo.equalsIgnoreCase("MOTO")) {
+
+		} else if (tipo.equalsIgnoreCase("CAMINHÃO") || tipo.equalsIgnoreCase("CAMINHAO")){
+
+		} else {
+			System.out.println("Tipo de veículo invalido!");
+		}
+
+	}
 		// menu do sistema deve conter:
 		// X - alguma função extra opcional (eventual bônus)
 		// para tal criar métodos static aqui na main que dialogam
