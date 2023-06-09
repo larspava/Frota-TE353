@@ -59,16 +59,25 @@ public class Main {
 			opcao = teclado.nextInt(); // ler um inteiro do teclado
 			teclado.nextLine(); // somente para consumir o Enter
 
-			// menu do sistema deve conter:
 			switch(opcao){
 				case 1: {
 					System.out.println("Cadastrando novo veículo ...");
 					createVehicle();
 					break;
-				}/*
-				case 2: {
-					break;
 				}
+				case 2: {
+					Integer emprestimo;
+					System.out.println(frota.toString());
+					System.out.println("Digite o número do veículo que deseja emprestar: ");
+					emprestimo = teclado.nextInt();
+					teclado.nextLine();
+					if(frota.emprestarVeiculo(emprestimo)){
+						System.out.println("Veículo emprestado com sucesso.");
+					} else {
+						System.out.println("Veículo indisponível para empréstimo");
+					}
+					break;
+				}/*
 				case 3: {
 					break;
 				}
@@ -76,6 +85,7 @@ public class Main {
 					break;
 				}*/
 				case 5: {
+					System.out.println("Frota: ");
 					System.out.println(frota.toString());
 					break;
 				}
