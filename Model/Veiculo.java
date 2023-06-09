@@ -13,18 +13,22 @@ import java.util.ArrayList;
  */
 public abstract class Veiculo {
 	protected String placa;
-	protected Estado estado; 
+	protected Estado estado;
 	protected ArrayList<Transporte> operacoes;
 	// poderia incluir marca e modelo, para ampliar os dados dos veículos
-	
+	protected String marca;
+	protected String modelo;
+
 	/**
 	* Construtor especificando apenas a placa.
 	* Considera que o veículo estará disponível do pátio.
 	* Cria o arraylist de operaçoes para armazenar os empréstimos deste veículo.
 	*/
-	public Veiculo(String placa) {
+	public Veiculo(String placa, String marca, String modelo) {
 		super();
 		this.placa = placa;
+		this.marca = marca;
+		this.modelo = modelo;
 		this.estado = Estado.PATIO;
 	}
 
@@ -34,6 +38,10 @@ public abstract class Veiculo {
 	 */
 	public String getPlaca() {
 		return placa;
+	}
+
+	public void setPlaca(String placa){
+		this.placa = placa;
 	}
 
 	/**
@@ -50,8 +58,23 @@ public abstract class Veiculo {
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
-	
-	
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public String getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+
 	// precisa desenvolver os métodos
 	
 	// emprestar, lê os dados de um Transporte (condutor, kmInicial)

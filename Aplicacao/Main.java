@@ -2,17 +2,23 @@ package Aplicacao;
 
 import Model.*;
 
+import java.util.Scanner;
+
 public class Main {
 	private static Frota frota = new Frota();
+	//scanner
+	private static Scanner teclado = new Scanner(System.in);
 	
 	public static void main(String[] args) {
+
+		int opcao;
 		
 		// base de veiculos hardcoded para facilitar os testes
-		Veiculo c1 = new Carro("ABC 1X34");
-		Veiculo c2 = new Carro("ABY 7B99", 2);
-		Veiculo cam1 = new Caminhao("XYZ 8X66", 8900);
-		Veiculo cam2 = new Caminhao("MNO 4Z23", 22000);
-		Veiculo moto = new Moto("ERR 0R00");
+		Veiculo c1 = new Carro("PQR 1234", "Corolla", "Toyota");
+		Veiculo c2 = new Carro("ABY 7B99","Golf", "Volkswagen", 2);
+		Veiculo cam1 = new Caminhao("XYZ 8X66", "Volvo", "FH 540",8900);
+		Veiculo cam2 = new Caminhao("MNO 4Z23", "Scania", "R450", 22000);
+		Veiculo moto = new Moto("ERR 0R00", "Honda", "CB 500");
 		
 		// adicionando à frota
 		frota.adicionar(c1);
@@ -40,14 +46,41 @@ public class Main {
 		}
 		
 		// codigos acima apenas para teste básico das classes projetadas
-		
+		do{
+			System.out.println("\n   -- MENU --\n");
+			System.out.println("0 - sair");
+			System.out.println("1 - cadastrar novo veiculo");
+			System.out.println("2 - emprestar veículo para operação");
+			System.out.println("3 - devolver veículo depois da operação");
+			System.out.println("4 - alterar estado de veículo");
+			System.out.println("5 - listar frota");
+
+			System.out.print("\n   Qual sua opcao? ");
+			opcao = teclado.nextInt(); // ler um inteiro do teclado
+			teclado.nextLine(); // somente para consumir o Enter
+
+			// menu do sistema deve conter:
+			switch(opcao){
+				case 1: {
+					break;
+				}/*
+				case 2: {
+					break;
+				}
+				case 3: {
+					break;
+				}
+				case 4: {
+					break;
+				}
+				case 5: {
+					break;
+				}*/
+			}
+		} while (opcao != 0);
+			teclado.close();
+		}
 		// menu do sistema deve conter:
-		// 0 - sair
-		// 1 - cadastrar novo veiculo
-		// 2 - emprestar veículo para operação
-		// 3 - devolver veículo depois da operação
-		// 4 - alterar estado de veículo
-		// 5 - listar frota
 		// X - alguma função extra opcional (eventual bônus)
 		// para tal criar métodos static aqui na main que dialogam
 		// com os métodos de Frota, Veiculo etc.
@@ -59,6 +92,5 @@ public class Main {
 		
 		// o sistema deve armazenar a frota (persistir os dados em disco)
 		// usando serialização de objetos (tema a ser visto)
-	}
-
 }
+
