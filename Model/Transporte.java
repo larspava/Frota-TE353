@@ -20,6 +20,11 @@ public class Transporte {
 		this.kmFinal = kmFinal;
 	}
 
+	public Transporte(String condutor, int kmInicial) {
+		this.condutor = condutor;
+		this.kmInicial = kmInicial;
+	}
+
 	public String getCondutor() {
 		return condutor;
 	}

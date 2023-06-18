@@ -32,19 +32,6 @@ public class Frota implements Iterable<Veiculo> {
 		this.frota = frota;
 	}
 
-	public boolean emprestarVeiculo(Integer opcao){
-		Veiculo veiculo = frota.get(opcao - 1);
-		if(veiculo == null){
-			System.out.println("Número para veículo inválido!");//TODO CRIAR EXCEÇÃO
-			return false;
-		}
-		if(veiculo.getEstado().getDescricao().equals("Pátio")){
-			veiculo.setEstado(Estado.OPERACAO);
-			return true;
-		} else {
-			return false;
-		}
-	}
 
 	public void alterarEstado(Integer opcaoVeic, Integer estado){
 		Veiculo veiculo = frota.get(opcaoVeic - 1);
@@ -66,6 +53,10 @@ public class Frota implements Iterable<Veiculo> {
 				break;
 			}
 		}
+	}
+
+	public Veiculo escolherVeiculo(Integer i){
+		return frota.get(i - 1);
 	}
 
 	@Override

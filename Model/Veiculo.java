@@ -30,6 +30,7 @@ public abstract class Veiculo {
 		this.marca = marca;
 		this.modelo = modelo;
 		this.estado = Estado.PATIO;
+		this.operacoes = new ArrayList<Transporte>();
 	}
 
 	/**
@@ -73,6 +74,18 @@ public abstract class Veiculo {
 
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
+	}
+
+	public ArrayList<Transporte> getOperacoes() {
+		return operacoes;
+	}
+
+	public Transporte getTransporte(Integer num) {
+		return operacoes.get(num);
+	}
+
+	public void addOperacao(Transporte operacao) {
+		this.operacoes.add(operacao);
 	}
 
 	@Override

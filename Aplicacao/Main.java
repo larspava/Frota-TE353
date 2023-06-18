@@ -66,36 +66,15 @@ public class Main {
 					break;
 				}
 				case 2: {
-					Integer emprestimo;
-					System.out.println(frota.toString());
-					System.out.println("Digite o número do veículo que deseja emprestar: ");
-					emprestimo = teclado.nextInt();
-					teclado.nextLine();
-					if(frota.emprestarVeiculo(emprestimo)){
-						System.out.println("Veículo emprestado com sucesso.");
-					} else {
-						System.out.println("Veículo indisponível para empréstimo");
-					}
+					emprestarVeiculo();
 					break;
-				}/*
+				}
 				case 3: {
+					devolverVeiculo();
 					break;
-				}*/
+				}
 				case 4: {
-					Integer num_veiculo, estado;
-					System.out.println(frota.toString());
-					System.out.print("Digite o número do veículo que deseja emprestar: ");
-					num_veiculo = teclado.nextInt();
-					teclado.nextLine();
-
-					System.out.println("Escolha o estado para o véiculo: ");
-					System.out.println("1. Pátio");
-					System.out.println("2. Em operação");
-					System.out.println("3. Oficina");
-					System.out.println("4. Perda total");
-					System.out.print("Escolha um número para o estado do veículo escolhido: ");
-					estado = teclado.nextInt();
-					frota.alterarEstado(num_veiculo, estado);
+					alterarEstado();
 					break;
 				}
 				case 5: {
@@ -183,6 +162,119 @@ public class Main {
 		} else {
 			System.out.println("Tipo de veículo invalido!");
 		}
+	}
+
+	public static void alterarEstado(){
+		Integer num_veiculo, estado;
+		System.out.println(frota.toString());
+		System.out.print("Digite o número do veículo que deseja alterar o estado: ");
+		num_veiculo = teclado.nextInt();
+		teclado.nextLine();
+
+		System.out.println("Escolha o estado para o véiculo: ");
+		System.out.println("1. Pátio");
+		System.out.println("2. Em operação");
+		System.out.println("3. Oficina");
+		System.out.println("4. Perda total");
+		System.out.print("Escolha um número para o estado do veículo escolhido: ");
+		estado = teclado.nextInt();
+		frota.alterarEstado(num_veiculo, estado);
+	}
+
+	public static void emprestarVeiculo(){
+		String condutor;
+		Integer emprestimo, qtdOperacoes;
+		Veiculo veiculoEscolhido;
+		Transporte transporte;
+
+		System.out.print("Insira o nome do condutor: ");
+		condutor = teclado.nextLine();
+
+		System.out.println("Veja os veículos disponíveis: ");
+		System.out.println(frota.toString());
+		System.out.print("Digite o número do veículo que deseja emprestar: ");
+		emprestimo = teclado.nextInt();
+		teclado.nextLine();
+
+		try{
+			veiculoEscolhido = frota.escolherVeiculo(emprestimo);
+		} catch (Exception e){
+			System.out.println("O número para o veículo é inválido!");
+			return;
+		}
+
+		if(!veiculoEscolhido.getEstado().equals(Estado.PATIO)){
+			System.out.println("Veículo não disponível para emprestimo");
+			return;
+		}
+
+		qtdOperacoes = veiculoEscolhido.getOperacoes().size();
+		if(veiculoEscolhido.getOperacoes().size() == 0){
+			System.out.print("Veículo 0 km!!!");
+			transporte = new Transporte(condutor, 0);
+			veiculoEscolhido.addOperacao(transporte);
+		} else {
+			Integer ultimoKm = veiculoEscolhido.getTransporte(qtdOperacoes - 1).getKmFinal();
+			transporte = new Transporte(condutor, ultimoKm);
+			veiculoEscolhido.addOperacao(transporte);
+		}
+		veiculoEscolhido.setEstado(Estado.OPERACAO);
+		System.out.print("Veículo Emprestado!!!!!");
+	}
+
+	public static void devolverVeiculo(){
+		Integer estado, devolucao, kmFinal;
+		Veiculo veiculoEscolhido;
+
+		System.out.println("Veja os veículos disponíveis: ");
+		System.out.println(frota.toString());
+		System.out.print("Digite o número do veículo que deseja devolver: ");
+		devolucao = teclado.nextInt();
+		teclado.nextLine();
+
+		try{
+			veiculoEscolhido = frota.escolherVeiculo(devolucao);
+		} catch (Exception e){
+			System.out.println("O número para o veículo é inválido!");
+			return;
+		}
+
+		if(!veiculoEscolhido.getEstado().equals(Estado.OPERACAO)){
+			System.out.println("Veículo não disponível para devolução");
+			return;
+		}
+
+		System.out.print("Digite o km do veículo na devolução: ");
+		kmFinal = teclado.nextInt();
+		teclado.nextLine();
+
+		try{
+			Transporte t = veiculoEscolhido.getTransporte(veiculoEscolhido.getOperacoes().size() - 1);
+			t.setKmFinal(kmFinal);
+		} catch (Exception e){
+			System.out.println("Erro ao adicionar kmFinal");
+		}
+
+		System.out.println("Escolha o estado para o véiculo: ");
+		System.out.println("1. Pátio");
+		System.out.println("2. Em operação");
+		System.out.println("3. Oficina");
+		System.out.println("4. Perda total");
+		System.out.print("Escolha um número para o estado do veículo devolvido: ");
+		estado = teclado.nextInt();
+
+		if(estado == 2){
+			System.out.println("Não é possível colocar em operação véiculo que está sendo devolvido");
+			return;
+		}
+
+		try{
+			frota.alterarEstado(devolucao, estado);
+		} catch (Exception e){
+			System.out.println("Estado para o veículo inválido");
+			return;
+		}
+		System.out.println("Veículo devolvido com sucesso!");
 	}
 }
 
