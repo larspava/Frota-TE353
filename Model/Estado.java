@@ -1,21 +1,48 @@
 package Model;
 
+/**
+ * Enumeração que representa os possíveis estados de um veículo.
+ *
+ * @author Willy Oliveira
+ * @version 1.0
+ * @since 1.0
+ */
 public enum Estado {
-	// os atributos de um enum são constantes, por isso escritos em MAIUSCULA
-	PATIO("Pátio"),
-	OPERACAO("Em operação"),
-	OFICINA("Oficina"),
-	PERDATOTAL("Perda total");
-	
-	private String descricao;
+    /**
+     * Estado de veículo no pátio.
+     */
+    PATIO("Pátio"),
 
-	// construtor de um enum, se usado, é sempre privado
-	private Estado(String descricao) {
-		this.descricao = descricao;
-	}
+    /**
+     * Estado de veículo em operação.
+     */
+    OPERACAO("Em operação"),
 
-	public String getDescricao() {
-		return descricao;
-	}
-	
+    /**
+     * Estado de veículo na oficina.
+     */
+    OFICINA("Oficina"),
+
+    /**
+     * Estado de veículo com perda total.
+     */
+    PERDATOTAL("Perda total");
+
+    private String descricao;
+
+    /**
+     * Construtor privado para o enum Estado.
+     * @param descricao a descrição do estado
+     */
+    private Estado(String descricao) {
+        this.descricao = descricao;
+    }
+
+    /**
+     * Retorna a descrição do estado.
+     * @return a descrição do estado
+     */
+    public String getDescricao() {
+        return descricao;
+    }
 }
