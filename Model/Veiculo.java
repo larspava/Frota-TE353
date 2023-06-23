@@ -92,24 +92,4 @@ public abstract class Veiculo {
 	public String toString() {
 		return modelo + " " + marca + " de placa " + placa + " - " + estado;
 	}
-
-	// precisa desenvolver os métodos
-	
-	// emprestar, lê os dados de um Transporte (condutor, kmInicial)
-	// altera estado para OPERACAO e adiciona este transporte do 
-	// ArrayList operacoes
-	
-	// devolver
-	
-	// setEstado
-	
-	// getters
-	
-	
-	// setters
-	
-	// toString
-	
-	// o que achar necessário
-
 }
